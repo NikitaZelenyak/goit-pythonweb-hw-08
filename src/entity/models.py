@@ -11,14 +11,14 @@ class Base(DeclarativeBase):
     pass
 
 
-class Todo(Base):
-    __tablename__ = "todos"
+class Contact_Book(Base):
+    __tablename__ = "Contact_Book"
     id: Mapped[int] = mapped_column(primary_key=True)
-    title: Mapped[str] = mapped_column(
-        String(constants.TITLE_MAX_LENGTH), nullable=False
-    )
-    description: Mapped[str] = mapped_column(String(255), nullable=True)
-    completed: Mapped[bool] = mapped_column(default=False)
+    name: Mapped[str] = mapped_column(String(constants.USER_NAME_MAX_LENGTH), nullable=False)
+    surname: Mapped[str] = mapped_column(String(constants.USER_SURNAME_MAX_LENGTH), nullable=False)
+    email: Mapped[str] = mapped_column(String(constants.USER_EMAIL_MAX_LENGTH), nullable=False)
+    phone: Mapped[str] = mapped_column(String(constants.PHONE_NUMBER_MAX_LENGTH), nullable=False)
+    date_of_birth: Mapped[datetime] = mapped_column(DateTime, nullable=False)
     created_at: Mapped[datetime] = mapped_column(DateTime, default=func.now())
     updated_at: Mapped[datetime] = mapped_column(
         DateTime, default=func.now(), onupdate=func.now()

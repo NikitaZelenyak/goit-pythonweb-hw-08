@@ -3,17 +3,17 @@ from sqlalchemy import text
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from src.database.db import get_db
-from src.routes import todos
+from src.routes import contacts_book
 
 
 app = FastAPI()
 
-app.include_router(todos.router, prefix="/api")
+app.include_router(contacts_book.router, prefix="/api")
 
 
 @app.get("/")
 def read_root(request: Request):
-    return {"message": "TODO Application v1.0"}
+    return {"message": "Contact Book Application v1.0"}
 
 
 @app.get("/api/healthchecker")
